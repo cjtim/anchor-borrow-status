@@ -52,7 +52,7 @@ async function report(address) {
   const loan_amount = await getLoan(address);
   const ltv = (loan_amount / collateral_value) * 100;
   const borrow_limit = collateral_value * 0.6; // 60% LTV
-  const liquidation_price = (loan_amount / borrow_limit) * rate * 1.01; // add estimate fee
+  const liquidation_price = (loan_amount / borrow_limit) * rate * 1.002; // add estimate fee
 
   json = JSON.stringify({
     rate,
