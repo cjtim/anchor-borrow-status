@@ -51,8 +51,18 @@ async function report(address) {
   const collateral_value = bluna * rate;
   const loan_amount = await getLoan(address);
   const ltv = (loan_amount / collateral_value) * 100;
+  const borrow_limit = collateral_value * 0.6; // 60% LTV
+  const liquidation_price = (loan_amount / borrow_limit) * rate * 1.01; // add estimate fee
 
-  json = JSON.stringify({ rate, bluna, collateral_value, ltv, loan_amount });
+  json = JSON.stringify({
+    rate,
+    bluna,
+    collateral_value,
+    ltv,
+    loan_amount,
+    borrow_limit,
+    liquidation_price,
+  });
   console.log(json);
 }
 
@@ -69,7 +79,9 @@ var job = new CronJob(
   },
   null,
   true,
-  "Asia/Bangkok"
+  "Asia/Bangkok",
+  null,
+  true
 );
 job.start();
 
