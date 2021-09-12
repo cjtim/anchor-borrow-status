@@ -22,7 +22,6 @@ async function main() {
   const address = process.env.address;
   if (!address) return console.log("No address provided!");
 
-  console.log("Querying LTV for", address);
   const bluna = await queryCustodyBorrower({
     lcd,
     market: MARKET_DENOMS.UUSD,
@@ -49,7 +48,8 @@ async function main() {
   });
 
   const ltv = (loan_amount / collateral_value) * 100;
-  console.log({ rate, bluna, collateral_value, ltv, loan_amount });
+  json = JSON.stringify({ rate, bluna, collateral_value, ltv, loan_amount });
+  console.log(json);
 }
 
 var job = new CronJob(
