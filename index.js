@@ -9,11 +9,6 @@ const {
   queryMarketBorrowerInfo,
 } = require("@anchor-protocol/anchor.js");
 
-var log = console.log;
-console.log = function () {
-  log.apply(console, [Date.now()].concat(arguments));
-};
-
 const { CronJob } = require("cron");
 const lcd = new LCDClient({
   URL: "https://lcd.terra.dev",
