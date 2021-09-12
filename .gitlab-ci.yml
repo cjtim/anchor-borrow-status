@@ -19,8 +19,6 @@ build-container:
     - docker push $DOCKER_IMAGE_TAG
     - docker push $DOCKER_IMAGE_TAG:latest
     - docker logout $CI_REGISTRY
-  dependencies:
-    - compile
   rules:
     - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
     - if: "$CI_COMMIT_BRANCH =~ /^(test)+/"
