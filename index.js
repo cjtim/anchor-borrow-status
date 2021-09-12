@@ -9,6 +9,12 @@ const {
   queryMarketBorrowerInfo,
 } = require("@anchor-protocol/anchor.js");
 
+var log = console.log;
+console.log = function () {
+  log.apply(console, [Date.now()].concat(arguments));
+};
+
+const { CronJob } = require("cron");
 const lcd = new LCDClient({
   URL: "https://lcd.terra.dev",
   chainID: "columbus-4",
@@ -19,6 +25,7 @@ const addressProvider = new AddressProviderFromJson(columbus4);
 async function main() {
   // Usage: node index.js <borrower_address>
   const address = process.env.address;
+  if (!address) return console.log("No address provided!");
 
   console.log("Querying LTV for", address);
   const bluna = await queryCustodyBorrower({
@@ -47,7 +54,16 @@ async function main() {
   });
 
   const ltv = (loan_amount / collateral_value) * 100;
-
   console.log({ rate, bluna, collateral_value, ltv, loan_amount });
 }
-main().catch(console.error);
+
+var job = new CronJob(
+  "1 * * * * *",
+  function () {
+    main().catch(console.error);
+  },
+  null,
+  true,
+  "Asia/Bangkok"
+);
+job.start();
