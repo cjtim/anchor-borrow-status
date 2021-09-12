@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@anchor-protocol/anchor.js": "^1.2.0-alpha.2",
+    "@terra-money/terra.js": "^2.0.5"
+  }
+}
