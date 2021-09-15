@@ -1,6 +1,6 @@
 import { CronJob } from "cron";
-import { Borrow } from "./src/borrow.js";
-import { getUSTBalance } from "./src/earn.js";
+import { Borrow } from "./borrow.js";
+import { getUSTBalance } from "./earn.js";
 
 async function main() {
   const { address } = process.env;
