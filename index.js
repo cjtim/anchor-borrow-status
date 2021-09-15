@@ -1,6 +1,6 @@
-const { CronJob } = require("cron");
-const { Borrow } = require("./src/borrow");
-const { getUSTBalance } = require("./src/earn");
+import { CronJob } from "cron";
+import { Borrow } from "./src/borrow.js";
+import { getUSTBalance } from "./src/earn.js";
 
 async function main() {
   const { address } = process.env;
@@ -9,11 +9,8 @@ async function main() {
   const borrow = new Borrow(address);
   const report = await borrow.report();
   const ust = await getUSTBalance(address);
-
-  json = JSON.stringify({
-    ...report,
-    total_value: report.collateral_value - report.loan_amount + ust,
-  });
+  const total_value = report.collateral_value - report.loan_amount + ust;
+  const json = JSON.stringify({ ...report, total_value });
   return console.info(json);
 }
 

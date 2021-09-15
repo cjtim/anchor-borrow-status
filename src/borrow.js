@@ -1,5 +1,5 @@
-const { LCDClient } = require("@terra-money/terra.js");
-const {
+import { LCDClient } from "@terra-money/terra.js";
+import {
   // Anchor,
   columbus4,
   AddressProviderFromJson,
@@ -7,9 +7,9 @@ const {
   COLLATERAL_DENOMS,
   queryCustodyBorrower,
   queryMarketBorrowerInfo,
-} = require("@anchor-protocol/anchor.js");
+} from "@anchor-protocol/anchor.js";
 
-class Borrow {
+export class Borrow {
   #addressProvider = new AddressProviderFromJson(columbus4);
   #lcd = new LCDClient({
     URL: "https://lcd.terra.dev",
@@ -67,5 +67,3 @@ class Borrow {
     return json;
   }
 }
-
-module.exports = { Borrow };

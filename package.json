@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "dependencies": {
     "@anchor-protocol/anchor-earn": "^1.0.4",
     "@anchor-protocol/anchor.js": "^1.2.0-alpha.2",

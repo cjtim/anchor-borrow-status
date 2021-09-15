@@ -1,11 +1,11 @@
-const {
+import {
   CHAINS,
   NETWORKS,
   AnchorEarn,
   DENOMS,
-} = require("@anchor-protocol/anchor-earn");
+} from "@anchor-protocol/anchor-earn";
 
-async function getUSTBalance(address) {
+export async function getUSTBalance(address) {
   const anchorEarn = new AnchorEarn({
     chain: CHAINS.TERRA,
     network: NETWORKS.COLUMBUS_4,
@@ -16,5 +16,3 @@ async function getUSTBalance(address) {
   if (ust) return parseFloat(ust.account_balance);
   return 0;
 }
-
-module.exports = { getUSTBalance };
