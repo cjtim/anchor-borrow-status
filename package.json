@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@anchor-protocol/anchor-earn": "^1.0.4",
     "@anchor-protocol/anchor.js": "^1.2.0-alpha.2",
     "@terra-money/terra.js": "^2.0.5",
     "cron": "^1.8.2"
